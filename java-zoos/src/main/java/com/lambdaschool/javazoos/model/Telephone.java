@@ -17,7 +17,7 @@ public class Telephone {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "zooid")
-//    @JsonIgnoreProperties("telephones")
+    @JsonIgnoreProperties("telephones")
     private Zoo zooid;
 
     public Telephone() {

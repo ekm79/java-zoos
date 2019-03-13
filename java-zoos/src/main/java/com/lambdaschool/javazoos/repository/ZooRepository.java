@@ -14,10 +14,9 @@ public interface ZooRepository extends JpaRepository<Zoo, Long> {
     @Query (value = "DELETE Zoo.zooid, Animal.animalid FROM zooanimals", nativeQuery = true)
     void deleteZooAnimal(long zooid, long animalid);
 
-    @Query(value = "INSERT Zoo.zooid, Animal.animalid INTO zooanimals", nativeQuery = true)
+    @Query(value = "INSERT z.zooid, z.animalid INTO zooanimals z", nativeQuery = true)
     Optional<?> addZooAnimal(long zooid, long animalid);
 
-    @Query(value = "SELECT Zoo.zooname, Animal.animaltype FROM Zoo, Animal" +
-            "JOIN zooanimals WHERE zooanimals.zooid == Zoo.zooid, zooanimals.animalid == Animal.animalid", nativeQuery = true)
+    @Query(value = "SELECT z.zooname, a.animaltype FROM Zoo z, Animal a, zooanimals WHERE zooanimals.zooid == a.zooid and zooanimals.animalid == a.animalid", nativeQuery = true)
     List<Optional<?>> findZooAnimals();
 }
