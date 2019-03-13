@@ -26,6 +26,12 @@ public class ZooController {
 
     @GetMapping("/{name}")
     public Zoo getSingleZoo(@PathVariable String name) {
-        return zooRepo.findZooByZoonameEquals(name);
+        Zoo zoo = null;
+        for (Zoo z: zooRepo.findAll()){
+            if (z.getZooname().toLowerCase().replaceAll(" ", "").equals(name)){
+                zoo = z;
+            }
+        }
+        return zoo;
     }
 }

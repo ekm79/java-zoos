@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -24,6 +25,17 @@ public class AdminController {
 
     @Autowired
     TelephoneRepository phoneRepo;
+
+    @GetMapping("/phone")
+    public List<Telephone> getAllPhone() {
+        return phoneRepo.findAll();
+    }
+
+    @GetMapping("/zooanimals")
+    public List<Optional<?>> getZooAnimals() {
+        return zooRepo.findZooAnimals();
+    }
+
 
     @PostMapping("/zoos")
     public Zoo addZoo(@RequestBody Zoo newZoo) {
