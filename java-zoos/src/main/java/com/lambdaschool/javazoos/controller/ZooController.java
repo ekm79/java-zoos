@@ -26,6 +26,6 @@ public class ZooController {
 
     @GetMapping("/{name}")
     public Zoo getSingleZoo(@PathVariable String name) {
-        return zooRepo.getZooByZooname(name);
+        return zooRepo.findZooByZoonameEquals(name);
     }
 }

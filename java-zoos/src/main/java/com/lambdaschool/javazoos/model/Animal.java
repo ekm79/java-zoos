@@ -1,12 +1,13 @@
 package com.lambdaschool.javazoos.model;
 
-import lombok.Data;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Data
 public class Animal {
 
     @Id
@@ -15,9 +16,34 @@ public class Animal {
 
     private String animaltype;
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "animals")
-    private Set<Zoo> zoos;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "animals")
+    @JsonIgnoreProperties("animals")
+    private Set<Zoo> zoos = new HashSet<>();
 
     public Animal() {
+    }
+
+    public long getAnimalid() {
+        return animalid;
+    }
+
+    public void setAnimalid(long animalid) {
+        this.animalid = animalid;
+    }
+
+    public String getAnimaltype() {
+        return animaltype;
+    }
+
+    public void setAnimaltype(String animaltype) {
+        this.animaltype = animaltype;
+    }
+
+    public Set<Zoo> getZoos() {
+        return zoos;
+    }
+
+    public void setZoos(Set<Zoo> zoos) {
+        this.zoos = zoos;
     }
 }
