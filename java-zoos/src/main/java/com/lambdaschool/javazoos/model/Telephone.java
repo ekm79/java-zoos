@@ -15,10 +15,16 @@ public class Telephone {
     private String phonetype;
     private String phonenumber;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "zooid")
     @JsonIgnoreProperties("telephones")
     private Zoo zooid;
+
+
+//    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "zooid")
+//    @JsonIgnore
+//    private Set<Telephone> telephones = new HashSet<>();
+
 
     public Telephone() {
     }
